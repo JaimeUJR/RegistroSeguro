@@ -49,6 +49,21 @@ class RegistroUsuario:
         except sqlite3.Error as e:
             print(f"Error de base de datos: {e}")
             return False
+
+    def obtener_usuario(self, email):
+        """
+        Devuelve la tupla (id, email, password_hash, role) del usuario si existe
+        """
+        try:
+            connection = sqlite3.connect(self.db_name)
+            cursor = connection.cursor()
+            cursor.execute('SELECT id, email, password, role FROM usuarios WHERE email = ?', (email,))
+            row = cursor.fetchone()
+            connection.close()
+            return row
+        except sqlite3.Error as e:
+            print(f"Error de base de datos: {e}")
+            return None
     
     def hashear_contrasena(self, password):
         """
@@ -63,6 +78,15 @@ class RegistroUsuario:
         salt = bcrypt.gensalt(rounds=12)
         hash_password = bcrypt.hashpw(password.encode('utf-8'), salt)
         return hash_password.decode('utf-8')
+
+    def verificar_contrasena(self, password, password_hash):
+        """
+        Verifica una contraseña en texto plano contra el hash almacenado
+        """
+        try:
+            return bcrypt.checkpw(password.encode('utf-8'), password_hash.encode('utf-8'))
+        except Exception:
+            return False
     
     def registrar_usuario(self, email, password):
         """
