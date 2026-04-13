@@ -1,6 +1,9 @@
 import sqlite3
 import bcrypt
 from datetime import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 class RegistroUsuario:
     """Módulo de lógica para el registro seguro de usuarios"""
@@ -47,7 +50,7 @@ class RegistroUsuario:
             connection.close()
             return resultado is not None
         except sqlite3.Error as e:
-            print(f"Error de base de datos: {e}")
+            logger.error(f"Error de base de datos al verificar existencia de usuario {email}: {e}")
             return False
 
     def obtener_usuario(self, email):
@@ -62,7 +65,7 @@ class RegistroUsuario:
             connection.close()
             return row
         except sqlite3.Error as e:
-            print(f"Error de base de datos: {e}")
+            logger.error(f"Error de base de datos al obtener usuario {email}: {e}")
             return None
     
     def hashear_contrasena(self, password):
@@ -99,9 +102,12 @@ class RegistroUsuario:
         Returns:
             dict: Respuesta con status, codigo y mensaje
         """
+        logger.debug(f"Iniciando registro de usuario: {email}")
+        
         # Validar credenciales
         es_valido, mensaje_error = self.validar_credenciales(email, password)
         if not es_valido:
+            logger.warning(f"Validación fallida para usuario {email}: {mensaje_error}")
             return {
                 'status': False,
                 'codigo': 400,
@@ -110,6 +116,7 @@ class RegistroUsuario:
         
         # Verificar si el usuario ya existe
         if self.usuario_existe(email):
+            logger.warning(f"Intento de registro de usuario ya existente: {email}")
             return {
                 'status': False,
                 'codigo': 409,
@@ -118,6 +125,7 @@ class RegistroUsuario:
         
         # Hashear la contraseña
         password_hash = self.hashear_contrasena(password)
+        logger.debug(f"Contraseña hasheada para usuario: {email}")
         
         # Guardar en la base de datos
         try:
@@ -130,12 +138,14 @@ class RegistroUsuario:
             connection.commit()
             connection.close()
             
+            logger.info(f"Usuario registrado exitosamente en base de datos: {email}")
             return {
                 'status': True,
                 'codigo': 201,
                 'mensaje': 'Usuario Registrado'
             }
         except sqlite3.Error as e:
+            logger.error(f"Error al guardar usuario {email} en base de datos: {str(e)}")
             return {
                 'status': False,
                 'codigo': 500,

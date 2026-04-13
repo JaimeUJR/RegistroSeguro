@@ -10,6 +10,7 @@ Esta es una API REST segura para el registro de usuarios con contraseñas hashea
 - ✅ Hash de contraseñas con bcrypt
 - ✅ Base de datos SQLite3
 - ✅ Respuestas HTTP estándar
+- ✅ Sistema de logging completo con niveles jerárquicos
 
 ## Requisitos
 
@@ -119,3 +120,24 @@ CREATE TABLE usuarios (
 - Se valida la longitud de la contraseña (8-10 caracteres)
 - Se previene SQL injection usando prepared statements
 - Se verifica la unicidad del email antes de registrar
+- Sistema de logging que NO registra información sensible (contraseñas, tokens JWT)
+
+## Logging
+
+El sistema implementa un completo sistema de logging con los siguientes niveles:
+
+- **DEBUG**: Información técnica y de depuración
+- **INFO**: Eventos exitosos del sistema (registros, logins exitosos)
+- **WARNING**: Errores causados por el usuario (credenciales inválidas, datos incorrectos)
+- **ERROR**: Errores del sistema (fallos de base de datos, excepciones)
+
+Los logs se guardan en el archivo `app.log` con el formato:
+```
+[Fecha y Hora] | [Nivel de Severidad] | Mensaje
+```
+
+Ejemplo:
+```
+[2026-04-13 08:06:28] | [INFO] | Usuario registrado exitosamente: usuario@example.com
+[2026-04-13 08:06:28] | [WARNING] | Credenciales incorrectas para email: usuario@example.com
+```

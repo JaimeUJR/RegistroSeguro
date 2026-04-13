@@ -1,0 +1,9 @@
+[2026-04-13 08:06:28] | [DEBUG] | Mensaje de debug
+[2026-04-13 08:06:28] | [INFO] | Mensaje de info
+[2026-04-13 08:06:28] | [WARNING] | Mensaje de warning
+[2026-04-13 08:06:28] | [ERROR] | Mensaje de error
+[2026-04-13 08:06:43] | [DEBUG] | Mensaje de debug
+[2026-04-13 08:06:43] | [INFO] | Mensaje de info
+[2026-04-13 08:06:43] | [WARNING] | Mensaje de warning
+[2026-04-13 08:06:43] | [ERROR] | Mensaje de error
+[2026-04-13 08:06:59] | [INFO] | Sistema de logging inicializado correctamente
