@@ -1,16 +1,18 @@
-from flask import Flask, request, jsonify
-from registro_logica import RegistroUsuario
-from auth import authenticate, verify_jwt
-import bleach
 import logging
 
-# Configuración del logging
+# Configuración del logging antes de importar módulos que usan loggers
 logging.basicConfig(
     filename='app.log',
     level=logging.DEBUG,
     format='[%(asctime)s] | [%(levelname)s] | %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
 )
+logging.getLogger().info('Sistema de logging inicializado correctamente')
+
+from flask import Flask, request, jsonify
+from registro_logica import RegistroUsuario
+from auth import authenticate, verify_jwt
+import bleach
 
 logger = logging.getLogger(__name__)
 
@@ -100,7 +102,7 @@ def login():
             return jsonify({'error': 'Credenciales incorrectas'}), 401
 
         logger.info(f"Login exitoso para usuario: {email}")
-        return jsonify({'token': '[TOKEN_REDACTED]', 'role': auth_result['role']}), 200
+        return jsonify({'token': auth_result['token'], 'role': auth_result['role']}), 200
     except Exception as e:
         logger.error(f"Error interno del servidor durante login: {str(e)}")
         return jsonify({'error': 'Error interno del servidor'}), 500

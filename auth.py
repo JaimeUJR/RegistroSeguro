@@ -45,7 +45,7 @@ def authenticate(email, password):
     if reg.verificar_contrasena(password, password_hash):
         token = generate_jwt(user_id, role)
         logger.info(f"Autenticación exitosa para usuario: {email}")
-        return {'id': user_id, 'role': role, 'token': '[TOKEN_REDACTED]'}
+        return {'id': user_id, 'role': role, 'token': token}
     
     logger.warning(f"Contraseña incorrecta para usuario: {email}")
     return None

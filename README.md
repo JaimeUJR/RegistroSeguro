@@ -9,6 +9,7 @@ Esta es una API REST segura para el registro de usuarios con contraseñas hashea
 - ✅ Verificación de usuarios duplicados
 - ✅ Hash de contraseñas con bcrypt
 - ✅ Base de datos SQLite3
+- ✅ Autenticación con JWT
 - ✅ Respuestas HTTP estándar
 - ✅ Sistema de logging completo con niveles jerárquicos
 
@@ -89,6 +90,87 @@ Registra un nuevo usuario.
 ```json
 {
   "error": "Error interno del servidor"
+}
+```
+
+### POST /login
+
+Autentica un usuario y devuelve un JWT.
+
+**Request:**
+```json
+{
+  "email": "usuario@example.com",
+  "password": "mipass123"
+}
+```
+
+**Respuestas:**
+
+- **200 OK**: Credenciales correctas
+```json
+{
+  "token": "<JWT>",
+  "role": "cliente"
+}
+```
+
+- **400 Bad Request**: Credenciales inválidas
+```json
+{
+  "error": "Credenciales Invalidas"
+}
+```
+
+- **401 Unauthorized**: Credenciales incorrectas
+```json
+{
+  "error": "Credenciales incorrectas"
+}
+```
+
+### POST /crear_reserva
+
+Crea una reserva protegida con JWT.
+
+**Headers:**
+```
+Authorization: Bearer <JWT>
+```
+
+**Request:**
+```json
+{
+  "cantidad": 2,
+  "descripcion": "Reserva segura"
+}
+```
+
+**Respuestas:**
+
+- **201 Created**: Reserva creada exitosamente
+```json
+{
+  "mensaje": "Reserva creada",
+  "reserva": {
+    "usuario_id": 1,
+    "cantidad": 2,
+    "descripcion": "Reserva segura"
+  }
+}
+```
+
+- **400 Bad Request**: Datos inválidos
+```json
+{
+  "error": "Datos inválidos"
+}
+```
+
+- **401 Unauthorized**: No autorizado o token inválido
+```json
+{
+  "error": "No autorizado"
 }
 ```
 

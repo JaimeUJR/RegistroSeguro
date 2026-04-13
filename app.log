@@ -1,9 +1,42 @@
-[2026-04-13 08:06:28] | [DEBUG] | Mensaje de debug
-[2026-04-13 08:06:28] | [INFO] | Mensaje de info
-[2026-04-13 08:06:28] | [WARNING] | Mensaje de warning
-[2026-04-13 08:06:28] | [ERROR] | Mensaje de error
-[2026-04-13 08:06:43] | [DEBUG] | Mensaje de debug
-[2026-04-13 08:06:43] | [INFO] | Mensaje de info
-[2026-04-13 08:06:43] | [WARNING] | Mensaje de warning
-[2026-04-13 08:06:43] | [ERROR] | Mensaje de error
-[2026-04-13 08:06:59] | [INFO] | Sistema de logging inicializado correctamente
+[2026-04-13 16:34:16] | [INFO] | Sistema de logging inicializado correctamente
+[2026-04-13 16:34:17] | [DEBUG] | Verificación de salud del servidor solicitada
+[2026-04-13 16:34:17] | [INFO] | Servidor funcionando correctamente
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando proceso de registro de usuario
+[2026-04-13 16:34:17] | [DEBUG] | Procesando registro para email: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando registro de usuario: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Contraseña hasheada para usuario: ci_testuser@example.com
+[2026-04-13 16:34:17] | [INFO] | Usuario registrado exitosamente en base de datos: ci_testuser@example.com
+[2026-04-13 16:34:17] | [INFO] | Usuario registrado exitosamente: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando proceso de registro de usuario
+[2026-04-13 16:34:17] | [DEBUG] | Procesando registro para email: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando registro de usuario: ci_testuser@example.com
+[2026-04-13 16:34:17] | [WARNING] | Intento de registro de usuario ya existente: ci_testuser@example.com
+[2026-04-13 16:34:17] | [WARNING] | Registro fallido para email ci_testuser@example.com: El usuario ya existe
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando proceso de autenticación
+[2026-04-13 16:34:17] | [DEBUG] | Procesando autenticación para email: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando autenticación para usuario: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Usuario encontrado: ci_testuser@example.com, verificando contraseña
+[2026-04-13 16:34:17] | [INFO] | Autenticación exitosa para usuario: ci_testuser@example.com
+[2026-04-13 16:34:17] | [INFO] | Login exitoso para usuario: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando proceso de autenticación
+[2026-04-13 16:34:17] | [DEBUG] | Procesando autenticación para email: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Iniciando autenticación para usuario: ci_testuser@example.com
+[2026-04-13 16:34:17] | [DEBUG] | Usuario encontrado: ci_testuser@example.com, verificando contraseña
+[2026-04-13 16:34:18] | [INFO] | Autenticación exitosa para usuario: ci_testuser@example.com
+[2026-04-13 16:34:18] | [INFO] | Login exitoso para usuario: ci_testuser@example.com
+[2026-04-13 16:34:18] | [DEBUG] | Iniciando proceso de creación de reserva
+[2026-04-13 16:34:18] | [DEBUG] | Verificando autenticación en request
+[2026-04-13 16:34:18] | [DEBUG] | Verificando token JWT
+[2026-04-13 16:34:18] | [DEBUG] | Token JWT válido
+[2026-04-13 16:34:18] | [DEBUG] | Usuario autorizado: 5
+[2026-04-13 16:34:18] | [DEBUG] | Usuario 5: Creando reserva con cantidad 1
+[2026-04-13 16:34:18] | [INFO] | Reserva creada exitosamente para usuario 5: cantidad 1
+[2026-04-13 16:34:18] | [DEBUG] | Iniciando proceso de autenticación
+[2026-04-13 16:34:18] | [DEBUG] | Procesando autenticación para email: ci_testuser@example.com
+[2026-04-13 16:34:18] | [DEBUG] | Iniciando autenticación para usuario: ci_testuser@example.com
+[2026-04-13 16:34:18] | [DEBUG] | Usuario encontrado: ci_testuser@example.com, verificando contraseña
+[2026-04-13 16:34:18] | [WARNING] | Contraseña incorrecta para usuario: ci_testuser@example.com
+[2026-04-13 16:34:18] | [WARNING] | Credenciales incorrectas para email: ci_testuser@example.com
+[2026-04-13 16:36:23] | [INFO] | Sistema de logging inicializado correctamente
+[2026-04-13 16:36:23] | [DEBUG] | Iniciando proceso de registro de usuario
+[2026-04-13 16:36:23] | [ERROR] | Error interno del servidor durante registro: 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.

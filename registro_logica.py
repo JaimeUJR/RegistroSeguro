@@ -1,6 +1,5 @@
 import sqlite3
 import bcrypt
-from datetime import datetime
 import logging
 
 logger = logging.getLogger(__name__)
